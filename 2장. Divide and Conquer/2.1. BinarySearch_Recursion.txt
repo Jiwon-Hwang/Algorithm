@@ -1,0 +1,27 @@
+// 문제 : 원소가 n개인 정렬된 배열 S에 검색키 x가 있는가? (존재 여부)
+// 입력 : 자연수 n, 정렬된(오름차순) 배열 S(인덱스는 1에서 n까지), 검색키 x
+// 출력 : location, S에서의 x의 위치(만약 검색키x가 없으면 위치는 0)
+
+x=18; 
+S=[10, 12, 13, 14, 18, 20, 25, 27, 30, 35, 40, 45, 47];
+
+index location (index low, index high){
+    index mid;
+
+    if (low>high)
+        return 0;
+    else {
+        mid = int((low+high)/2);  //버림
+        if(x==S[mid])             //1. 검색키                                                                                                                                                                                                                              찾으면 검색키의 배열에서의 위치 출력(mid)
+            return mid;
+        else if(x<S[mid]){        //2. 검색키가 배열의 중간값보다 작으면 배열의 왼쪽 절반 탐색ㄱㄱ
+            return location(low, mid-1);
+        }
+        else                      //3. 검색키가 배열의 중간값보다 크면 배열의 오른쪽 절반 탐색ㄱㄱ   
+            return location(mid+1, high);
+    }
+}
+
+locationout = location(0, 12);
+
+print(locationout);
